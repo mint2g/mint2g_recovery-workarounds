@@ -30,9 +30,9 @@ done
 # busybox ls -l /sys/dev/block/179:0/
 # busybox ash
 
-busybox mount -t ext4 -o ro /dev/mmcblk0p22 /recovery-ramdisk
+busybox mount -t ext4 -o ro /dev/mmcblk0p22 /ramdisk-recovery
 
-image=/recovery-ramdisk/ramdisk-recovery.img
+image=/ramdisk-recovery/ramdisk-recovery.img
 
 busybox echo "loading ramdisk-recovery.img" >>boot.txt
 
@@ -40,13 +40,13 @@ busybox echo "loading ramdisk-recovery.img" >>boot.txt
 busybox echo 0 > /sys/class/power_supply/battery/charging_mode_booting
 
 busybox gzip -d < $image > /stage1/ramdisk.cpio
-busybox umount /recovery-ramdisk
+busybox umount /ramdisk-recovery
 
 busybox cpio -ui < /stage1/ramdisk.cpio
 
 busybox umount /sys
 busybox umount /proc
 busybox date >>boot.txt
-busybox rm -rf /stage1 /recovery-ramdisk /dev/*
+busybox rm -rf /stage1 /ramdisk-recovery  /dev/*
 
 export PATH="${_PATH}"

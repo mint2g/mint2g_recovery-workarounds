@@ -13,6 +13,6 @@ cd ./load-ramdisk/
 [[ -d proc ]] || mkdir proc
 [[ -d sys ]]  || mkdir sys
 
-[[ -d recovery-ramdisk ]]  || mkdir recovery-ramdisk
+[[ -d ramdisk-recovery ]]  || mkdir ramdisk-recovery
 
 find . | cpio --create --format='newc' | gzip > "$OUT_FILE"
